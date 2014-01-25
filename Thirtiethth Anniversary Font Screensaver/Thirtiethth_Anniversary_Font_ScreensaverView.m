@@ -17,7 +17,7 @@ NSString * characters = @"
     NSInteger maxCharacterIndex;
 }
 
-@property (nonatomic, strong) CATextLayer * textLayer;
+@property (nonatomic, strong) CATextLayer * textLayer1;
 @property (nonatomic) CGFontRef fontRef;
 
 - (CGPoint)randomPoint;
@@ -39,10 +39,10 @@ NSString * characters = @"
     self.fontRef = [self fontFromBundle:@"mac-icon-standard"];
     
     self.wantsLayer = YES;
-    self.textLayer = [CATextLayer layer];
-    self.textLayer.font = self.fontRef;
-    self.textLayer.anchorPoint = (CGPoint){ 0, 0 };
-    [self.layer addSublayer:self.textLayer];
+    self.textLayer1 = [CATextLayer layer];
+    self.textLayer1.font = self.fontRef;
+    self.textLayer1.anchorPoint = (CGPoint){ 0, 0 };
+    [self.layer addSublayer:self.textLayer1];
 
     self.foregroundColour = [NSColor blackColor];
     self.backgroundColour = [NSColor whiteColor];
@@ -59,13 +59,13 @@ NSString * characters = @"
 - (void)setForegroundColour:(NSColor *)foregroundColour
 {
     _foregroundColour = foregroundColour;
-    self.textLayer.foregroundColor = [foregroundColour CGColor];
+    self.textLayer1.foregroundColor = [foregroundColour CGColor];
 }
 
 - (void)setFontSize:(NSNumber *)fontSize
 {
     _fontSize = fontSize;
-    self.textLayer.fontSize = [fontSize doubleValue];
+    self.textLayer1.fontSize = [fontSize doubleValue];
     
     CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
 
@@ -85,7 +85,7 @@ NSString * characters = @"
     
     CFRelease(fontCore);
     
-    self.textLayer.bounds = (CGRect){ CGPointZero, maxSize };
+    self.textLayer1.bounds = (CGRect){ CGPointZero, maxSize };
 }
 
 - (void)startAnimation
@@ -107,8 +107,8 @@ NSString * characters = @"
 - (void)changeCharacter
 {
     NSString * characterString = [characters substringWithRange:NSMakeRange(0, 1)];
-    self.textLayer.string = characterString;
-    self.textLayer.position = [self randomPoint];
+    self.textLayer1.string = characterString;
+    self.textLayer1.position = [self randomPoint];
 }
 
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString
