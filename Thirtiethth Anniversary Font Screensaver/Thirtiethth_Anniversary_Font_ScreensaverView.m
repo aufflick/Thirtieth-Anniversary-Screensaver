@@ -22,24 +22,35 @@ NSString * characters = @"
     CATextLayer * currentLayer;
     CGSize maxSize;
     NSInteger currentIndex;
+    BOOL isPreview;
 }
 
 @property (nonatomic, strong) CATextLayer * textLayer1;
 @property (nonatomic, strong) CATextLayer * textLayer2;
 @property (nonatomic) CGFontRef fontRef;
+@property (strong) IBOutlet NSPanel *optionsPanel;
+@property (nonatomic, readonly) ScreenSaverDefaults * defaults;
 
 - (CGPoint)randomPoint;
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString;
 
+/// options
+@property (nonatomic) NSNumber * fontSize;
+@property (nonatomic) NSNumber * swapTimeInterval;
+@property (nonatomic) NSNumber * fadeTimeInterval;
+@property (nonatomic, strong) NSColor * backgroundColour;
+@property (nonatomic, strong) NSColor * foregroundColour;
 
 @end
 
 @implementation Thirtiethth_Anniversary_Font_ScreensaverView
 
-- (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview
+- (id)initWithFrame:(NSRect)frame isPreview:(BOOL)_isPreview
 {
-    if ((self = [super initWithFrame:frame isPreview:isPreview]) == nil)
+    if ((self = [super initWithFrame:frame isPreview:_isPreview]) == nil)
         return self;
+    
+    isPreview = _isPreview;
     
     maxCharacterIndex = [characters length] - 1;
     
@@ -48,12 +59,22 @@ NSString * characters = @"
     self.wantsLayer = YES;
     self.textLayer1 = [self aTextLayer];
     self.textLayer2 = [self aTextLayer];
+    
+    [self.defaults registerDefaults:@{
+                                      //@"foregroundColour": [[NSColor blackColor] hexString],
+                                      //@"backgroundColour": [[NSColor whiteColor] hexString],
+                                      @"fontSize": @128,
+                                      @"swapTimeInterval": @3,
+                                      @"fadeTimeInterval": @1,
+                                      }];
 
     self.foregroundColour = [NSColor blackColor];
     self.backgroundColour = [NSColor whiteColor];
-    self.fontSize = @128;
-    self.swapTimeInterval = @3;
-    self.fadeTimeInterval = @1;
+    self.fontSize = [self.defaults objectForKey:@"fontSize"];
+    self.swapTimeInterval = [self.defaults objectForKey:@"swapTimeInterval"];
+    self.fadeTimeInterval = [self.defaults objectForKey:@"fadeTimeInterval"];
+    
+    //TODO: apple garamond for all the settings labels
 
     return self;
 }
@@ -61,6 +82,11 @@ NSString * characters = @"
 - (void)dealloc
 {
     CGFontRelease(_fontRef);
+}
+
+- (ScreenSaverDefaults *)defaults
+{
+    return [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
 }
 
 - (CATextLayer *)aTextLayer
@@ -79,9 +105,22 @@ NSString * characters = @"
     self.textLayer2.foregroundColor = [foregroundColour CGColor];
 }
 
+- (void)setSwapTimeInterval:(NSNumber *)swapTimeInterval
+{
+    _swapTimeInterval = swapTimeInterval;
+    [self.defaults setObject:swapTimeInterval forKey:@"swapTimeInterval"];
+}
+
+- (void)setFadeTimeInterval:(NSNumber *)fadeTimeInterval
+{
+    _fadeTimeInterval = fadeTimeInterval;
+    [self.defaults setObject:fadeTimeInterval forKey:@"fadeTimeInterval"];
+}
+
 - (void)setFontSize:(NSNumber *)fontSize
 {
     _fontSize = fontSize;
+    [self.defaults setObject:fontSize forKey:@"fontSize"];
     
     CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
 
@@ -107,6 +146,11 @@ NSString * characters = @"
     self.textLayer2.bounds = (CGRect){ CGPointZero, maxSize };
 }
 
+- (CGFloat)effectiveFadeTimeInterval
+{
+    return MIN([self.fadeTimeInterval doubleValue], [self.swapTimeInterval doubleValue] / 3);
+}
+
 - (void)startAnimation
 {
     srand((unsigned int)time(0));
@@ -124,7 +168,7 @@ NSString * characters = @"
     [super startAnimation];
     
     [CATransaction begin];
-    [CATransaction setAnimationDuration:[self.fadeTimeInterval doubleValue]];
+    [CATransaction setAnimationDuration:[self effectiveFadeTimeInterval]];
     
     CABasicAnimation * fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeIn.fromValue = @0;
@@ -159,7 +203,7 @@ NSString * characters = @"
     [nextLayer removeAllAnimations];
     
     [CATransaction begin];
-    [CATransaction setAnimationDuration:[self.fadeTimeInterval doubleValue]];
+    [CATransaction setAnimationDuration:[self effectiveFadeTimeInterval]];
     
     CABasicAnimation * fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeOut.fromValue = @1;
@@ -238,18 +282,26 @@ NSString * characters = @"
 
 - (void)animateOneFrame
 {
-    
 }
 
 - (BOOL)hasConfigureSheet
 {
-    return NO;
+    return YES;
 }
 
 - (NSWindow*)configureSheet
 {
-    return nil;
+    if (self.optionsPanel == nil)
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"OptionsPanel" owner:self topLevelObjects:nil];
+
+    return self.optionsPanel;
 }
+
+- (IBAction)closeConfig:(id)sender
+{
+    [NSApp endSheet:self.optionsPanel];
+}
+
 
 - (CGFontRef)fontFromBundle : (NSString*) fontName
 {

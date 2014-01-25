@@ -15,6 +15,8 @@
 		6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */; };
 		6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E7791893B07500A22A57 /* QuartzCore.framework */; };
 		6466E77C1893B5D100A22A57 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E77B1893B5D100A22A57 /* ApplicationServices.framework */; };
+		6466E77E1893CDBB00A22A57 /* OptionsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6466E77D1893CDBB00A22A57 /* OptionsPanel.xib */; };
+		6466E7801893D3E500A22A57 /* HappyBirthdayMacintosh.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466E77F1893D3E500A22A57 /* HappyBirthdayMacintosh.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +47,8 @@
 		6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mac-icon-standard.ttf"; sourceTree = "<group>"; };
 		6466E7791893B07500A22A57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6466E77B1893B5D100A22A57 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		6466E77D1893CDBB00A22A57 /* OptionsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsPanel.xib; sourceTree = "<group>"; };
+		6466E77F1893D3E500A22A57 /* HappyBirthdayMacintosh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HappyBirthdayMacintosh.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +109,11 @@
 			isa = PBXGroup;
 			children = (
 				6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */,
+				6466E77F1893D3E500A22A57 /* HappyBirthdayMacintosh.png */,
 				6466E7691893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.h */,
 				6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */,
 				6466E7631893AA8900A22A57 /* Supporting Files */,
+				6466E77D1893CDBB00A22A57 /* OptionsPanel.xib */,
 			);
 			path = "Thirtiethth Anniversary Font Screensaver";
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6466E7801893D3E500A22A57 /* HappyBirthdayMacintosh.png in Resources */,
+				6466E77E1893CDBB00A22A57 /* OptionsPanel.xib in Resources */,
 				6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */,
 				6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */,
 			);

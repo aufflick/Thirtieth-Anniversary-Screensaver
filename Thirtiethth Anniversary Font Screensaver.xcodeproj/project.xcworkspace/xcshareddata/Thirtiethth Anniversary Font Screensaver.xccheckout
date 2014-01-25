@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A0341D71-36E0-4BFD-B3B6-B07E139600FB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Thirtiethth Anniversary Font Screensaver</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9DCD58DA-EB19-4365-8FCD-4350856485C8</key>
+		<string>ssh://bitbucket.org/pumptheory/thirtieth-anniversary-font-screensaver.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Thirtiethth Anniversary Font Screensaver.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9DCD58DA-EB19-4365-8FCD-4350856485C8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/pumptheory/thirtieth-anniversary-font-screensaver.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9DCD58DA-EB19-4365-8FCD-4350856485C8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9DCD58DA-EB19-4365-8FCD-4350856485C8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Thirtiethth Anniversary Font Screensaver</string>
+		</dict>
+	</array>
+</dict>
+</plist>
