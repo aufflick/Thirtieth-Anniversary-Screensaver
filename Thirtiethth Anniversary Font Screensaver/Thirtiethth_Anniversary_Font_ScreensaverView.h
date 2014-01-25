@@ -10,4 +10,6 @@
 
 @interface Thirtiethth_Anniversary_Font_ScreensaverView : ScreenSaverView
 
+@property (nonatomic) CGFloat fontSizeDivisor;
+
 @end

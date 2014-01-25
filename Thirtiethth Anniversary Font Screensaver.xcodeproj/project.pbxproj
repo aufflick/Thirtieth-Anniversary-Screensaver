@@ -11,10 +11,26 @@
 		6466E75D1893AA8900A22A57 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E75C1893AA8900A22A57 /* ScreenSaver.framework */; };
 		6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7651893AA8900A22A57 /* InfoPlist.strings */; };
 		6466E76B1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */; };
+		6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */; };
+		6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */; };
+		6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E7791893B07500A22A57 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6466E7771893AEBC00A22A57 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Users/aufflick/Library/Screen Savers";
+			dstSubfolderSpec = 0;
+			files = (
+				6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		6466E7571893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thirtiethth Anniversary Font Screensaver.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "30th Anniversary Font Screensaver.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6466E75A1893AA8900A22A57 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6466E75C1893AA8900A22A57 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		6466E75F1893AA8900A22A57 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -25,6 +41,8 @@
 		6466E7681893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thirtiethth Anniversary Font Screensaver-Prefix.pch"; sourceTree = "<group>"; };
 		6466E7691893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thirtiethth_Anniversary_Font_ScreensaverView.h; sourceTree = "<group>"; };
 		6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thirtiethth_Anniversary_Font_ScreensaverView.m; sourceTree = "<group>"; };
+		6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mac-icon-standard.ttf"; sourceTree = "<group>"; };
+		6466E7791893B07500A22A57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */,
 				6466E75D1893AA8900A22A57 /* ScreenSaver.framework in Frameworks */,
 				6466E75B1893AA8900A22A57 /* Cocoa.framework in Frameworks */,
 			);
@@ -52,7 +71,7 @@
 		6466E7581893AA8900A22A57 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6466E7571893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver.saver */,
+				6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +79,7 @@
 		6466E7591893AA8900A22A57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6466E7791893B07500A22A57 /* QuartzCore.framework */,
 				6466E75A1893AA8900A22A57 /* Cocoa.framework */,
 				6466E75C1893AA8900A22A57 /* ScreenSaver.framework */,
 				6466E75E1893AA8900A22A57 /* Other Frameworks */,
@@ -80,6 +100,7 @@
 		6466E7621893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver */ = {
 			isa = PBXGroup;
 			children = (
+				6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */,
 				6466E7691893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.h */,
 				6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */,
 				6466E7631893AA8900A22A57 /* Supporting Files */,
@@ -110,23 +131,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6466E7561893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver */ = {
+		6466E7561893AA8900A22A57 /* 30th Anniversary Font Screensaver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6466E76E1893AA8900A22A57 /* Build configuration list for PBXNativeTarget "Thirtiethth Anniversary Font Screensaver" */;
+			buildConfigurationList = 6466E76E1893AA8900A22A57 /* Build configuration list for PBXNativeTarget "30th Anniversary Font Screensaver" */;
 			buildPhases = (
 				6466E7511893AA8900A22A57 /* Sources */,
 				6466E7521893AA8900A22A57 /* Frameworks */,
 				6466E7531893AA8900A22A57 /* Headers */,
 				6466E7541893AA8900A22A57 /* Resources */,
 				6466E7551893AA8900A22A57 /* Rez */,
+				6466E7771893AEBC00A22A57 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Thirtiethth Anniversary Font Screensaver";
+			name = "30th Anniversary Font Screensaver";
 			productName = "Thirtiethth Anniversary Font Screensaver";
-			productReference = 6466E7571893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver.saver */;
+			productReference = 6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -150,7 +172,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6466E7561893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver */,
+				6466E7561893AA8900A22A57 /* 30th Anniversary Font Screensaver */,
 			);
 		};
 /* End PBXProject section */
@@ -160,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */,
 				6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6466E76E1893AA8900A22A57 /* Build configuration list for PBXNativeTarget "Thirtiethth Anniversary Font Screensaver" */ = {
+		6466E76E1893AA8900A22A57 /* Build configuration list for PBXNativeTarget "30th Anniversary Font Screensaver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6466E76F1893AA8900A22A57 /* Debug */,
