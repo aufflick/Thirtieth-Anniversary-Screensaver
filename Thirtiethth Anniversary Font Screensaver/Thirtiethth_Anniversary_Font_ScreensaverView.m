@@ -8,6 +8,9 @@
 
 #import "Thirtiethth_Anniversary_Font_ScreensaverView.h"
 #import <QuartzCore/QuartzCore.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 NSString * characters = @"";
 
@@ -15,13 +18,17 @@ NSString * characters = @"
 {
     NSArray * charactersArray;
     NSInteger maxCharacterIndex;
+    NSTimer * moveTimer;
+    CATextLayer * currentLayer;
+    CGSize maxSize;
+    NSInteger currentIndex;
 }
 
 @property (nonatomic, strong) CATextLayer * textLayer1;
+@property (nonatomic, strong) CATextLayer * textLayer2;
 @property (nonatomic) CGFontRef fontRef;
 
 - (CGPoint)randomPoint;
-- (void)changeCharacter;
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString;
 
 
@@ -39,14 +46,14 @@ NSString * characters = @"
     self.fontRef = [self fontFromBundle:@"mac-icon-standard"];
     
     self.wantsLayer = YES;
-    self.textLayer1 = [CATextLayer layer];
-    self.textLayer1.font = self.fontRef;
-    self.textLayer1.anchorPoint = (CGPoint){ 0, 0 };
-    [self.layer addSublayer:self.textLayer1];
+    self.textLayer1 = [self aTextLayer];
+    self.textLayer2 = [self aTextLayer];
 
     self.foregroundColour = [NSColor blackColor];
     self.backgroundColour = [NSColor whiteColor];
-    self.fontSize = @(128);
+    self.fontSize = @128;
+    self.swapTimeInterval = @3;
+    self.fadeTimeInterval = @1;
 
     return self;
 }
@@ -56,20 +63,29 @@ NSString * characters = @"
     CGFontRelease(_fontRef);
 }
 
+- (CATextLayer *)aTextLayer
+{
+    CATextLayer * layer = [CATextLayer layer];
+    layer.font = self.fontRef;
+    layer.anchorPoint = (CGPoint){ 0, 0 };
+    [self.layer addSublayer:layer];
+    return layer;
+}
+
 - (void)setForegroundColour:(NSColor *)foregroundColour
 {
     _foregroundColour = foregroundColour;
     self.textLayer1.foregroundColor = [foregroundColour CGColor];
+    self.textLayer2.foregroundColor = [foregroundColour CGColor];
 }
 
 - (void)setFontSize:(NSNumber *)fontSize
 {
     _fontSize = fontSize;
-    self.textLayer1.fontSize = [fontSize doubleValue];
     
     CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
 
-    CGSize maxSize = CGSizeZero;
+    maxSize = CGSizeZero;
     
     for (NSInteger i=0; i <= maxCharacterIndex; i++)
     {
@@ -85,30 +101,95 @@ NSString * characters = @"
     
     CFRelease(fontCore);
     
+    self.textLayer1.fontSize = [fontSize doubleValue];
+    self.textLayer2.fontSize = [fontSize doubleValue];
     self.textLayer1.bounds = (CGRect){ CGPointZero, maxSize };
+    self.textLayer2.bounds = (CGRect){ CGPointZero, maxSize };
 }
 
 - (void)startAnimation
 {
-    [super startAnimation];
+    srand((unsigned int)time(0));
     
-    /*NSNumber * prevActionDisable = [CATransaction valueForKey:kCATransactionDisableActions];
-    
+    currentLayer = self.textLayer1;
+    [self changeCharacterInLayer:self.textLayer1];
+
     [CATransaction begin];
-    [CATransaction setValue:@YES
-                     forKey:kCATransactionDisableActions];
-
+    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+    self.textLayer1.opacity = 0;
+    self.textLayer2.opacity = 0;
+    currentLayer.position = [self randomPoint];
     [CATransaction commit];
-    [CATransaction setValue:prevActionDisable forKey:kCATransactionDisableActions];*/
+    
+    [super startAnimation];
 
-    [self changeCharacter];
+    //TODO: animate initial fade in
+    self.textLayer1.opacity = 1;
+
+    moveTimer = [NSTimer scheduledTimerWithTimeInterval:[self.swapTimeInterval doubleValue] target:self selector:@selector(swapLayers) userInfo:nil repeats:YES];
 }
 
-- (void)changeCharacter
+- (void)swapLayers
 {
-    NSString * characterString = [characters substringWithRange:NSMakeRange(0, 1)];
-    self.textLayer1.string = characterString;
-    self.textLayer1.position = [self randomPoint];
+    CATextLayer * prevLayer = currentLayer;
+    CATextLayer * nextLayer = currentLayer == self.textLayer1 ? self.textLayer2 : self.textLayer1;
+
+    [CATransaction begin];
+    [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
+
+    [self changeCharacterInLayer:nextLayer];
+    nextLayer.position = [self randomPoint];
+    
+    while (CGRectIntersectsRect(nextLayer.frame, prevLayer.frame))
+        nextLayer.position = [self randomPoint];
+    
+    [CATransaction commit];
+    
+    prevLayer.opacity = 0;
+    nextLayer.opacity = 1;
+    
+    [prevLayer removeAllAnimations];
+    [nextLayer removeAllAnimations];
+    
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:[self.fadeTimeInterval doubleValue]];
+    
+    CABasicAnimation * fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeOut.fromValue = @1;
+    fadeOut.toValue = @0;
+    //fadeOut.removedOnCompletion = NO;
+    [prevLayer addAnimation:fadeOut forKey:@"SwapLayersAnimation"];
+    
+    CABasicAnimation * fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeIn.fromValue = @0;
+    fadeIn.toValue = @1;
+    //fadeIn.removedOnCompletion = NO;
+    [nextLayer addAnimation:fadeIn forKey:@"SwapLayersAnimation"];
+
+    //todo: customise timing
+    [CATransaction commit];
+    
+    currentLayer = nextLayer;
+}
+
+- (NSInteger)randomIndex
+{
+    NSInteger index = round((rand() * maxCharacterIndex) / RAND_MAX);
+    NSAssert(index <= maxCharacterIndex, @"oops");
+    if (index == maxCharacterIndex)
+        NSLog(@"*** HIT INDEX!");
+
+    return index;
+}
+
+- (void)changeCharacterInLayer:(CATextLayer *)textLayer
+{
+    NSInteger index = currentIndex;
+    while (index == currentIndex)
+        index = [self randomIndex];
+
+    NSString * characterString = [characters substringWithRange:NSMakeRange(index, 1)];
+    textLayer.string = characterString;
 }
 
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString
@@ -123,11 +204,19 @@ NSString * characters = @"
     
 - (CGPoint)randomPoint
 {
-    return (CGPoint){ 0, 0 };
+    CGRect bounds = self.bounds;
+    
+    NSInteger xRange = floor(bounds.size.width - maxSize.width);
+    NSInteger yRange = floor(bounds.size.height - maxSize.height);
+    
+    return (CGPoint){ floor((rand() * xRange) / RAND_MAX), floor((rand() * yRange) / RAND_MAX) };
 }
 
 - (void)stopAnimation
 {
+    [moveTimer invalidate];
+    moveTimer = nil;
+    
     [super stopAnimation];
 }
 
@@ -145,7 +234,7 @@ NSString * characters = @"
 
 - (void)animateOneFrame
 {
-    // smoothly move layer and swap character every so often (setting)
+    
 }
 
 - (BOOL)hasConfigureSheet

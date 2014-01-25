@@ -11,6 +11,8 @@
 @interface Thirtiethth_Anniversary_Font_ScreensaverView : ScreenSaverView
 
 @property (nonatomic) NSNumber * fontSize;
+@property (nonatomic) NSNumber * swapTimeInterval;
+@property (nonatomic) NSNumber * fadeTimeInterval;
 @property (nonatomic, strong) NSColor * backgroundColour;
 @property (nonatomic, strong) NSColor * foregroundColour;
 
