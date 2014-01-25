@@ -67,6 +67,8 @@ NSString * characters = @"
     if ((self = [super initWithFrame:frame isPreview:_isPreview]) == nil)
         return self;
     
+    srand((unsigned int)time(0));
+    
     isPreview = _isPreview;
     
     maxCharacterIndex = [characters length] - 1;
@@ -162,16 +164,16 @@ NSString * characters = @"
 
 - (void)startAnimation
 {
-    srand((unsigned int)time(0));
+    CGRect bounds = self.bounds;
     
     currentLayer = self.textLayer1;
-    [self changeCharacterInLayer:self.textLayer1];
+    [self changeCharacterInLayer:self.textLayer1 wantZero:YES];
 
     [CATransaction begin];
     [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
     self.textLayer1.opacity = 1;
     self.textLayer2.opacity = 0;
-    currentLayer.position = [self randomPoint];
+    currentLayer.position = (CGPoint){ floor(CGRectGetMidX(bounds) - (maxSize.width / 2)), floor(CGRectGetMidY(bounds) - (maxSize.height / 2)) };
     [CATransaction commit];
     
     [super startAnimation];
@@ -189,17 +191,22 @@ NSString * characters = @"
     moveTimer = [NSTimer scheduledTimerWithTimeInterval:[self.swapTimeInterval doubleValue] target:self selector:@selector(swapLayers:) userInfo:nil repeats:YES];
 }
 
+- (void)viewDidChangeBackingProperties
+{
+    self.layer.contentsScale = [self.window backingScaleFactor];
+    self.textLayer1.contentsScale = [self.window backingScaleFactor];
+    self.textLayer2.contentsScale = [self.window backingScaleFactor];
+}
+
 - (void)swapLayers:(NSTimer *)timer
 {
-    NSLog(@"timer: %@", timer);
-    
     CATextLayer * prevLayer = currentLayer;
     CATextLayer * nextLayer = currentLayer == self.textLayer1 ? self.textLayer2 : self.textLayer1;
 
     [CATransaction begin];
     [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
-
-    [self changeCharacterInLayer:nextLayer];
+    
+    [self changeCharacterInLayer:nextLayer wantZero:NO];
     nextLayer.position = [self randomPoint];
     
     if (!isPreview)
@@ -210,14 +217,11 @@ NSString * characters = @"
     
     [CATransaction commit];
     
-    prevLayer.opacity = 0;
-    nextLayer.opacity = 1;
-    
-    [prevLayer removeAllAnimations];
-    [nextLayer removeAllAnimations];
-    
     [CATransaction begin];
     [CATransaction setAnimationDuration:[self effectiveFadeTimeInterval]];
+    
+    prevLayer.opacity = 0;
+    nextLayer.opacity = 1;
     
     CABasicAnimation * fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeOut.fromValue = @1;
@@ -236,19 +240,25 @@ NSString * characters = @"
 
 - (NSInteger)randomIndex
 {
-    NSInteger index = round((rand() * maxCharacterIndex) / RAND_MAX);
-    NSAssert(index <= maxCharacterIndex, @"oops");
-    if (index == maxCharacterIndex)
-        NSLog(@"*** HIT INDEX!");
+    NSInteger index = round((rand() * (maxCharacterIndex + 0.1)) / RAND_MAX);
+    index = MIN(maxCharacterIndex, index);
+    index = MAX(0, index);
 
     return index;
 }
 
-- (void)changeCharacterInLayer:(CATextLayer *)textLayer
+- (void)changeCharacterInLayer:(CATextLayer *)textLayer wantZero:(BOOL)wantZero
 {
     NSInteger index = currentIndex;
-    while (index == currentIndex)
-        index = [self randomIndex];
+    if (wantZero)
+    {
+        index = 0;
+    }
+    else
+    {
+        while (index == currentIndex)
+            index = [self randomIndex];
+    }
 
     NSString * characterString = [characters substringWithRange:NSMakeRange(index, 1)];
     textLayer.string = characterString;

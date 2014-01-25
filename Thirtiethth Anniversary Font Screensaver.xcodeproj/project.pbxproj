@@ -14,25 +14,11 @@
 		6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7651893AA8900A22A57 /* InfoPlist.strings */; };
 		6466E76B1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */; };
 		6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */; };
-		6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */; };
 		6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E7791893B07500A22A57 /* QuartzCore.framework */; };
 		6466E77C1893B5D100A22A57 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E77B1893B5D100A22A57 /* ApplicationServices.framework */; };
 		6466E77E1893CDBB00A22A57 /* OptionsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6466E77D1893CDBB00A22A57 /* OptionsPanel.xib */; };
 		6466E7801893D3E500A22A57 /* HappyBirthdayMacintosh.png in Resources */ = {isa = PBXBuildFile; fileRef = 6466E77F1893D3E500A22A57 /* HappyBirthdayMacintosh.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6466E7771893AEBC00A22A57 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "/Users/aufflick/Library/Screen Savers";
-			dstSubfolderSpec = 0;
-			files = (
-				6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6422C5ED1893E36400E07AE1 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
@@ -156,7 +142,6 @@
 				6466E7531893AA8900A22A57 /* Headers */,
 				6466E7541893AA8900A22A57 /* Resources */,
 				6466E7551893AA8900A22A57 /* Rez */,
-				6466E7771893AEBC00A22A57 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -175,6 +160,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "The High Technology Group";
+				TargetAttributes = {
+					6466E7561893AA8900A22A57 = {
+						DevelopmentTeam = 5225423CCE;
+					};
+				};
 			};
 			buildConfigurationList = 6466E7501893AA8900A22A57 /* Build configuration list for PBXProject "Thirtiethth Anniversary Font Screensaver" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -257,6 +247,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -294,6 +285,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -313,12 +305,15 @@
 		6466E76F1893AA8900A22A57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thirtiethth Anniversary Font Screensaver/Thirtiethth Anniversary Font Screensaver-Prefix.pch";
 				INFOPLIST_FILE = "Thirtiethth Anniversary Font Screensaver/Thirtiethth Anniversary Font Screensaver-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -326,12 +321,15 @@
 		6466E7701893AA8900A22A57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Thirtiethth Anniversary Font Screensaver/Thirtiethth Anniversary Font Screensaver-Prefix.pch";
 				INFOPLIST_FILE = "Thirtiethth Anniversary Font Screensaver/Thirtiethth Anniversary Font Screensaver-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
