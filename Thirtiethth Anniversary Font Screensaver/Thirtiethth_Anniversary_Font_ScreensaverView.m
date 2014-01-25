@@ -41,9 +41,26 @@ NSString * characters = @"
 @property (nonatomic, strong) NSColor * backgroundColour;
 @property (nonatomic, strong) NSColor * foregroundColour;
 
+@property (nonatomic, strong) NSColor * backgroundColourBinding;
+@property (nonatomic, strong) NSColor * foregroundColourBinding;
+
 @end
 
 @implementation Thirtiethth_Anniversary_Font_ScreensaverView
+
+- (void)loadDefaults
+{
+    NSData * foregroundColourValue = [self.defaults objectForKey:@"foregroundColour"];
+    NSData * backgroundColourValue = [self.defaults objectForKey:@"backgroundColour"];
+    NSColor * foregroundColour = foregroundColourValue ? [NSUnarchiver unarchiveObjectWithData:foregroundColourValue] : nil;
+    NSColor * backgroundColour = backgroundColourValue ? [NSUnarchiver unarchiveObjectWithData:backgroundColourValue] : nil;
+    
+    self.foregroundColour = foregroundColour ?: [NSColor blackColor];
+    self.backgroundColour = backgroundColour ?: [NSColor whiteColor];
+    self.fontSize = [self.defaults objectForKey:@"fontSize"];
+    self.swapTimeInterval = [self.defaults objectForKey:@"swapTimeInterval"];
+    self.fadeTimeInterval = [self.defaults objectForKey:@"fadeTimeInterval"];
+}
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)_isPreview
 {
@@ -61,21 +78,13 @@ NSString * characters = @"
     self.textLayer2 = [self aTextLayer];
     
     [self.defaults registerDefaults:@{
-                                      //@"foregroundColour": [[NSColor blackColor] hexString],
-                                      //@"backgroundColour": [[NSColor whiteColor] hexString],
                                       @"fontSize": @128,
                                       @"swapTimeInterval": @3,
                                       @"fadeTimeInterval": @1,
                                       }];
-
-    self.foregroundColour = [NSColor blackColor];
-    self.backgroundColour = [NSColor whiteColor];
-    self.fontSize = [self.defaults objectForKey:@"fontSize"];
-    self.swapTimeInterval = [self.defaults objectForKey:@"swapTimeInterval"];
-    self.fadeTimeInterval = [self.defaults objectForKey:@"fadeTimeInterval"];
     
-    //TODO: apple garamond for all the settings labels
-
+    [self loadDefaults];
+    
     return self;
 }
 
@@ -108,19 +117,19 @@ NSString * characters = @"
 - (void)setSwapTimeInterval:(NSNumber *)swapTimeInterval
 {
     _swapTimeInterval = swapTimeInterval;
-    [self.defaults setObject:swapTimeInterval forKey:@"swapTimeInterval"];
 }
 
 - (void)setFadeTimeInterval:(NSNumber *)fadeTimeInterval
 {
     _fadeTimeInterval = fadeTimeInterval;
-    [self.defaults setObject:fadeTimeInterval forKey:@"fadeTimeInterval"];
 }
 
 - (void)setFontSize:(NSNumber *)fontSize
 {
+    if (isPreview)
+        fontSize = @64;
+    
     _fontSize = fontSize;
-    [self.defaults setObject:fontSize forKey:@"fontSize"];
     
     CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
 
@@ -176,12 +185,14 @@ NSString * characters = @"
     [currentLayer addAnimation:fadeIn forKey:@"SwapLayersAnimation"];
     
     [CATransaction commit];
-
-    moveTimer = [NSTimer scheduledTimerWithTimeInterval:[self.swapTimeInterval doubleValue] target:self selector:@selector(swapLayers) userInfo:nil repeats:YES];
+    
+    moveTimer = [NSTimer scheduledTimerWithTimeInterval:[self.swapTimeInterval doubleValue] target:self selector:@selector(swapLayers:) userInfo:nil repeats:YES];
 }
 
-- (void)swapLayers
+- (void)swapLayers:(NSTimer *)timer
 {
+    NSLog(@"timer: %@", timer);
+    
     CATextLayer * prevLayer = currentLayer;
     CATextLayer * nextLayer = currentLayer == self.textLayer1 ? self.textLayer2 : self.textLayer1;
 
@@ -191,8 +202,11 @@ NSString * characters = @"
     [self changeCharacterInLayer:nextLayer];
     nextLayer.position = [self randomPoint];
     
-    while (CGRectIntersectsRect(nextLayer.frame, prevLayer.frame))
-        nextLayer.position = [self randomPoint];
+    if (!isPreview)
+    {
+        while (CGRectIntersectsRect(nextLayer.frame, prevLayer.frame))
+            nextLayer.position = [self randomPoint];
+    }
     
     [CATransaction commit];
     
@@ -291,14 +305,28 @@ NSString * characters = @"
 
 - (NSWindow*)configureSheet
 {
+    self.backgroundColourBinding = self.backgroundColour;
+    self.foregroundColourBinding = self.foregroundColour;
+    
     if (self.optionsPanel == nil)
         [[NSBundle bundleForClass:[self class]] loadNibNamed:@"OptionsPanel" owner:self topLevelObjects:nil];
-
+    
     return self.optionsPanel;
 }
 
 - (IBAction)closeConfig:(id)sender
 {
+    NSData * backgroundColourValue = [NSArchiver archivedDataWithRootObject:self.backgroundColourBinding];
+    NSData * foregroundColourValue = [NSArchiver archivedDataWithRootObject:self.foregroundColourBinding];
+    
+    [self.defaults setValue:backgroundColourValue forKeyPath:@"backgroundColour"];
+    [self.defaults setValue:foregroundColourValue forKeyPath:@"foregroundColour"];
+    
+    [self loadDefaults];
+    [self setNeedsDisplay:YES]; // background may have changed
+    
+    [self.defaults synchronize];
+    
     [NSApp endSheet:self.optionsPanel];
 }
 

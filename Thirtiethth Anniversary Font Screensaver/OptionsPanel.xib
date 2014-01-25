@@ -14,10 +14,10 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="9c1-cf-aFt" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="272" y="172" width="473" height="373"/>
+            <rect key="contentRect" x="272" y="172" width="473" height="423"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="czu-xo-sCm">
-                <rect key="frame" x="0.0" y="0.0" width="473" height="373"/>
+                <rect key="frame" x="0.0" y="0.0" width="473" height="423"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="Zcq-0v-nyd">
@@ -35,58 +35,58 @@ DQ
                         </connections>
                     </button>
                     <slider verticalHuggingPriority="750" id="abB-cf-4AV">
-                        <rect key="frame" x="137" y="97" width="264" height="21"/>
+                        <rect key="frame" x="137" y="147" width="264" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" minValue="24" maxValue="512" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="BBY-aB-hBF"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="24" maxValue="512" doubleValue="128" tickMarkPosition="above" sliderType="linear" id="BBY-aB-hBF"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="defaults.fontSize" id="w0N-8p-eBr"/>
                         </connections>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lm4-ra-SUd">
-                        <rect key="frame" x="42" y="99" width="61" height="17"/>
+                        <rect key="frame" x="42" y="149" width="65" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Icon Size" id="FVS-Ea-XE6">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Icon Size:" id="FVS-Ea-XE6">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <slider verticalHuggingPriority="750" id="gWp-sO-Ai8">
-                        <rect key="frame" x="137" y="72" width="264" height="21"/>
+                        <rect key="frame" x="137" y="122" width="264" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="5" doubleValue="3" tickMarkPosition="above" sliderType="linear" id="EJP-a2-Jyn"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="5" doubleValue="3" tickMarkPosition="above" sliderType="linear" id="EJP-a2-Jyn"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="defaults.fadeTimeInterval" id="fHj-LU-AzR"/>
                         </connections>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="j9N-oh-JZm">
-                        <rect key="frame" x="42" y="74" width="66" height="17"/>
+                        <rect key="frame" x="42" y="124" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Crossfade" id="f5t-wE-x3z">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Crossfade:" id="f5t-wE-x3z">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <slider verticalHuggingPriority="750" id="4Qn-pK-Gjm">
-                        <rect key="frame" x="137" y="47" width="264" height="21"/>
+                        <rect key="frame" x="137" y="97" width="264" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" minValue="2" maxValue="60" doubleValue="4" tickMarkPosition="above" sliderType="linear" id="j9F-GL-3WZ"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="2" maxValue="60" doubleValue="4" tickMarkPosition="above" sliderType="linear" id="j9F-GL-3WZ"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="defaults.swapTimeInterval" id="yCj-z2-QCE"/>
                         </connections>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YHe-4r-ylS">
-                        <rect key="frame" x="42" y="49" width="39" height="17"/>
+                        <rect key="frame" x="42" y="99" width="43" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delay" id="IMB-Dt-stv">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delay:" id="IMB-Dt-stv">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="12O-ti-HIz">
-                        <rect key="frame" x="22" y="335" width="433" height="27"/>
+                        <rect key="frame" x="22" y="385" width="433" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Happy 30th Birthday Macintosh!" id="OsR-OF-x4l">
                             <font key="font" size="19" name="Garamond-Bold"/>
@@ -95,64 +95,83 @@ DQ
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="biP-yN-IL4">
-                        <rect key="frame" x="44" y="124" width="388" height="209"/>
+                        <rect key="frame" x="44" y="174" width="388" height="209"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="HappyBirthdayMacintosh" id="QbU-PY-Y7g"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="HeR-Pz-Hsg">
-                        <rect key="frame" x="112" y="99" width="21" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="24" id="EhI-Jg-ln9">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Dph-HX-Tb3">
-                        <rect key="frame" x="405" y="99" width="29" height="17"/>
+                        <rect key="frame" x="405" y="149" width="29" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="512" id="h3L-pu-X5q">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#" numberStyle="scientific" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="309" id="1rV-89-qUR"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="HGd-Hg-LHs">
-                        <rect key="frame" x="112" y="74" width="21" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" id="Cwu-CX-iwD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="defaults.fontSize" id="zCe-Zl-r1X"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="QAR-re-NI8">
-                        <rect key="frame" x="405" y="74" width="12" height="16"/>
+                        <rect key="frame" x="405" y="124" width="29" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5" id="cRb-jO-5Gq">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#.#" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="1" id="owL-zg-dDk"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="V64-kn-KIq">
-                        <rect key="frame" x="112" y="49" width="21" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="2" id="lct-60-arH">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="defaults.fadeTimeInterval" id="Nsm-Fp-cJ1"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6Gi-iQ-Z2l">
-                        <rect key="frame" x="405" y="49" width="21" height="17"/>
+                        <rect key="frame" x="405" y="99" width="29" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="60" id="eqY-k3-5PF">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#.#" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="1" id="FdS-m2-lOP"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="defaults.swapTimeInterval" id="1Lh-jB-Y8h"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="mZ5-vv-zz1">
+                        <rect key="frame" x="42" y="64" width="129" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background Colour:" id="aO9-I3-jUS">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <colorWell id="zwL-9R-coT">
+                        <rect key="frame" x="177" y="61" width="44" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="backgroundColourBinding" id="hrz-Z3-7IL"/>
+                        </connections>
+                    </colorWell>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GtI-I2-COK">
+                        <rect key="frame" x="253" y="64" width="128" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Foreground Colour:" id="KLz-BO-sfe">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <colorWell id="zPV-Lv-Ubg">
+                        <rect key="frame" x="388" y="61" width="44" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="foregroundColourBinding" id="lAh-8q-nDb"/>
+                        </connections>
+                    </colorWell>
                 </subviews>
             </view>
         </window>
