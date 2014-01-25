@@ -10,6 +10,8 @@
 
 @interface Thirtiethth_Anniversary_Font_ScreensaverView : ScreenSaverView
 
-@property (nonatomic) CGFloat fontSizeDivisor;
+@property (nonatomic) NSNumber * fontSize;
+@property (nonatomic, strong) NSColor * backgroundColour;
+@property (nonatomic, strong) NSColor * foregroundColour;
 
 @end

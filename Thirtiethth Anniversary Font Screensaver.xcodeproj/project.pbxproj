@@ -14,6 +14,7 @@
 		6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */; };
 		6466E7781893AF0200A22A57 /* 30th Anniversary Font Screensaver.saver in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */; };
 		6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E7791893B07500A22A57 /* QuartzCore.framework */; };
+		6466E77C1893B5D100A22A57 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E77B1893B5D100A22A57 /* ApplicationServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		6466E76A1893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thirtiethth_Anniversary_Font_ScreensaverView.m; sourceTree = "<group>"; };
 		6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mac-icon-standard.ttf"; sourceTree = "<group>"; };
 		6466E7791893B07500A22A57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6466E77B1893B5D100A22A57 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6466E77C1893B5D100A22A57 /* ApplicationServices.framework in Frameworks */,
 				6466E77A1893B07500A22A57 /* QuartzCore.framework in Frameworks */,
 				6466E75D1893AA8900A22A57 /* ScreenSaver.framework in Frameworks */,
 				6466E75B1893AA8900A22A57 /* Cocoa.framework in Frameworks */,
@@ -79,6 +82,7 @@
 		6466E7591893AA8900A22A57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6466E77B1893B5D100A22A57 /* ApplicationServices.framework */,
 				6466E7791893B07500A22A57 /* QuartzCore.framework */,
 				6466E75A1893AA8900A22A57 /* Cocoa.framework */,
 				6466E75C1893AA8900A22A57 /* ScreenSaver.framework */,
