@@ -354,6 +354,10 @@ NSString * characters = @"
     return fontRef;
 }
 
+- (IBAction)me:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitter.com/markaufflick"]];
+}
 
 @end
 

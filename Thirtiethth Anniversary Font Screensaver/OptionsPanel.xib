@@ -172,6 +172,17 @@ DQ
                             <binding destination="-2" name="value" keyPath="foregroundColourBinding" id="lAh-8q-nDb"/>
                         </connections>
                     </colorWell>
+                    <button verticalHuggingPriority="750" id="iuw-0F-Xi2">
+                        <rect key="frame" x="44" y="13" width="103" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="inline" title="@markaufflick" bezelStyle="inline" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Ch-rn-JRr">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="me:" target="-2" id="8Wd-Sp-MRY"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>
