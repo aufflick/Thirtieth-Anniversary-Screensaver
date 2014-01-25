@@ -12,11 +12,15 @@
 NSString * characters = @"";
 
 @interface Thirtiethth_Anniversary_Font_ScreensaverView ()
+{
+    NSArray * charactersArray;
+    NSInteger maxCharacterIndex;
+}
 
 @property (nonatomic, strong) CATextLayer * textLayer;
 @property (nonatomic) CGFontRef fontRef;
 
-- (CGPoint)randomOrigin;
+- (CGPoint)randomPoint;
 - (void)changeCharacter;
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString;
 
@@ -30,16 +34,19 @@ NSString * characters = @"
     if ((self = [super initWithFrame:frame isPreview:isPreview]) == nil)
         return self;
     
+    maxCharacterIndex = [characters length] - 1;
+    
     self.fontRef = [self fontFromBundle:@"mac-icon-standard"];
     
     self.wantsLayer = YES;
     self.textLayer = [CATextLayer layer];
     self.textLayer.font = self.fontRef;
+    self.textLayer.anchorPoint = (CGPoint){ 0, 0 };
     [self.layer addSublayer:self.textLayer];
 
-    self.fontSize = @(128);
     self.foregroundColour = [NSColor blackColor];
     self.backgroundColour = [NSColor whiteColor];
+    self.fontSize = @(128);
 
     return self;
 }
@@ -59,15 +66,35 @@ NSString * characters = @"
 {
     _fontSize = fontSize;
     self.textLayer.fontSize = [fontSize doubleValue];
+    
+    CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
+
+    CGSize maxSize = CGSizeZero;
+    
+    for (NSInteger i=0; i <= maxCharacterIndex; i++)
+    {
+        NSMutableAttributedString * attributedCharacterString = [[NSMutableAttributedString alloc] initWithString:[characters substringWithRange:NSMakeRange(i, 1)]
+                                                                                                       attributes:@{(__bridge id)kCTForegroundColorAttributeName: (__bridge id)[self.foregroundColour CGColor],
+                                                                                                                    (__bridge id)kCTFontAttributeName: (__bridge id)fontCore,
+                                                                                                                    (__bridge id)kCTFontSizeAttribute: fontSize}];
+        
+        CGSize size = [self boundingSizeForWidth:self.bounds.size.width withAttributedString:attributedCharacterString];
+        maxSize.width = MAX(maxSize.width, size.width);
+        maxSize.height = MAX(maxSize.height, size.height);
+    }
+    
+    CFRelease(fontCore);
+    
+    self.textLayer.bounds = (CGRect){ CGPointZero, maxSize };
 }
 
 - (void)startAnimation
 {
     [super startAnimation];
     
-    NSNumber * prevActionDisable = [CATransaction valueForKey:kCATransactionDisableActions];
+    /*NSNumber * prevActionDisable = [CATransaction valueForKey:kCATransactionDisableActions];
     
-    /*[CATransaction begin];
+    [CATransaction begin];
     [CATransaction setValue:@YES
                      forKey:kCATransactionDisableActions];
 
@@ -81,18 +108,7 @@ NSString * characters = @"
 {
     NSString * characterString = [characters substringWithRange:NSMakeRange(0, 1)];
     self.textLayer.string = characterString;
-    
-    CTFontRef fontCore = CTFontCreateWithGraphicsFont(self.fontRef, [self.fontSize doubleValue], NULL, NULL);
-
-    NSMutableAttributedString * attributedCharacterString = [[NSMutableAttributedString alloc] initWithString:characterString
-                                                                                                   attributes:@{(__bridge id)kCTForegroundColorAttributeName: (__bridge id)[self.foregroundColour CGColor],
-                                                                                                                (__bridge id)kCTFontAttributeName: (__bridge id)fontCore,
-                                                                                                                (__bridge id)kCTFontSizeAttribute: self.fontSize}];
-    
-    CGRect frame = (CGRect){ [self randomOrigin], [self boundingSizeForWidth:self.bounds.size.width withAttributedString:attributedCharacterString] };
-    
-    CFRelease(fontCore);
-    self.textLayer.frame = frame;
+    self.textLayer.position = [self randomPoint];
 }
 
 - (CGSize)boundingSizeForWidth:(CGFloat)inWidth withAttributedString:(NSAttributedString *)attributedString
@@ -100,11 +116,12 @@ NSString * characters = @"
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (CFMutableAttributedStringRef) attributedString);
     CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(inWidth, CGFLOAT_MAX), NULL);
     CFRelease(framesetter);
-    return suggestedSize;
+
+    return (CGSize){ suggestedSize.width + 5, suggestedSize.height + 5 }; // we don't care too much here, and definitely don't want to clip
 }
 
     
-- (CGPoint)randomOrigin
+- (CGPoint)randomPoint
 {
     return (CGPoint){ 0, 0 };
 }
