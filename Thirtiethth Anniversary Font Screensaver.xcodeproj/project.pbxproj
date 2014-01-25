@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6422C5EF1893E36400E07AE1 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 6422C5ED1893E36400E07AE1 /* thumbnail.png */; };
+		6422C5F01893E36400E07AE1 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6422C5EE1893E36400E07AE1 /* thumbnail@2x.png */; };
 		6466E75B1893AA8900A22A57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E75A1893AA8900A22A57 /* Cocoa.framework */; };
 		6466E75D1893AA8900A22A57 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6466E75C1893AA8900A22A57 /* ScreenSaver.framework */; };
 		6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6466E7651893AA8900A22A57 /* InfoPlist.strings */; };
@@ -33,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6422C5ED1893E36400E07AE1 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		6422C5EE1893E36400E07AE1 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 		6466E7571893AA8900A22A57 /* 30th Anniversary Font Screensaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "30th Anniversary Font Screensaver.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6466E75A1893AA8900A22A57 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6466E75C1893AA8900A22A57 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
@@ -108,6 +112,8 @@
 		6466E7621893AA8900A22A57 /* Thirtiethth Anniversary Font Screensaver */ = {
 			isa = PBXGroup;
 			children = (
+				6422C5ED1893E36400E07AE1 /* thumbnail.png */,
+				6422C5EE1893E36400E07AE1 /* thumbnail@2x.png */,
 				6466E7711893AABD00A22A57 /* mac-icon-standard.ttf */,
 				6466E77F1893D3E500A22A57 /* HappyBirthdayMacintosh.png */,
 				6466E7691893AA8900A22A57 /* Thirtiethth_Anniversary_Font_ScreensaverView.h */,
@@ -196,6 +202,8 @@
 				6466E77E1893CDBB00A22A57 /* OptionsPanel.xib in Resources */,
 				6466E7721893AABD00A22A57 /* mac-icon-standard.ttf in Resources */,
 				6466E7671893AA8900A22A57 /* InfoPlist.strings in Resources */,
+				6422C5EF1893E36400E07AE1 /* thumbnail.png in Resources */,
+				6422C5F01893E36400E07AE1 /* thumbnail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +355,7 @@
 				6466E7701893AA8900A22A57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
