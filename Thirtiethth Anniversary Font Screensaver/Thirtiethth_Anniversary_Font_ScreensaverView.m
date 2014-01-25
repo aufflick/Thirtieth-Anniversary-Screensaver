@@ -116,15 +116,22 @@ NSString * characters = @"
 
     [CATransaction begin];
     [CATransaction setValue:@YES forKey:kCATransactionDisableActions];
-    self.textLayer1.opacity = 0;
+    self.textLayer1.opacity = 1;
     self.textLayer2.opacity = 0;
     currentLayer.position = [self randomPoint];
     [CATransaction commit];
     
     [super startAnimation];
-
-    //TODO: animate initial fade in
-    self.textLayer1.opacity = 1;
+    
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:[self.fadeTimeInterval doubleValue]];
+    
+    CABasicAnimation * fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeIn.fromValue = @0;
+    fadeIn.toValue = @1;
+    [currentLayer addAnimation:fadeIn forKey:@"SwapLayersAnimation"];
+    
+    [CATransaction commit];
 
     moveTimer = [NSTimer scheduledTimerWithTimeInterval:[self.swapTimeInterval doubleValue] target:self selector:@selector(swapLayers) userInfo:nil repeats:YES];
 }
@@ -157,16 +164,13 @@ NSString * characters = @"
     CABasicAnimation * fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeOut.fromValue = @1;
     fadeOut.toValue = @0;
-    //fadeOut.removedOnCompletion = NO;
     [prevLayer addAnimation:fadeOut forKey:@"SwapLayersAnimation"];
     
     CABasicAnimation * fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeIn.fromValue = @0;
     fadeIn.toValue = @1;
-    //fadeIn.removedOnCompletion = NO;
     [nextLayer addAnimation:fadeIn forKey:@"SwapLayersAnimation"];
 
-    //todo: customise timing
     [CATransaction commit];
     
     currentLayer = nextLayer;
